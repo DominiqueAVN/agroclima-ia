@@ -1,0 +1,27 @@
+# Entorno virtual (nunca se sube; cada persona crea el suyo con requirements.txt)
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+# Datos generados automaticamente (se regeneran corriendo main.py)
+data/synthetic/*.csv
+docs/reporte_*.txt
+
+# Variables de entorno y credenciales (claves de API, tokens, etc.)
+# NUNCA subir este archivo a GitHub - aqui van tus claves privadas cuando
+# integres APIs (Telegram, Twilio, servicios de datos satelitales, etc.)
+.env
+.env.local
+
+# Archivos de configuracion del editor
+.vscode/
+.idea/
+
+# Modelos entrenados grandes (se versionan aparte si crecen mucho)
+models/trained/*.pkl
+models/trained/*.joblib
+
+# Sistema operativo
+.DS_Store
+Thumbs.db

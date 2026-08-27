@@ -1,0 +1,35 @@
+name: CI
+
+# Se ejecuta automaticamente cada vez que subes cambios o abres un pull
+# request. Si algo se rompe, GitHub te avisa antes de que el error llegue
+# a la rama principal.
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  verificar:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar el codigo
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Instalar dependencias
+        run: pip install -r requirements.txt
+
+      - name: Revisar estilo de codigo (ruff)
+        run: ruff check .
+
+      - name: Revisar formato de codigo (black)
+        run: black --check .
+
+      - name: Ejecutar pruebas automatizadas
+        run: python -m pytest tests/ -v
