@@ -17,7 +17,7 @@ import argparse
 import logging
 import random
 from dataclasses import dataclass
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 import numpy as np
@@ -191,7 +191,7 @@ def simular_serie_climatica(
         np.random.seed(semilla)
 
     intervalo_horas = 24 / mediciones_por_dia
-    fecha_inicio = datetime.now() - timedelta(days=dias)
+    fecha_inicio = datetime.now(tz=timezone.utc) - timedelta(days=dias)
     fechas = pd.date_range(
         start=fecha_inicio,
         periods=dias * mediciones_por_dia,
