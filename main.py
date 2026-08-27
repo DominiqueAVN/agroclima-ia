@@ -35,6 +35,7 @@ logger = logging.getLogger("agroclima")
 # Modelos de datos
 # ---------------------------------------------------------------------------
 
+
 @dataclass(frozen=True)
 class Region:
     """Perfil climatico de referencia para una zona de monitoreo."""
@@ -160,6 +161,7 @@ UMBRALES_CULTIVO: dict[str, UmbralCultivo] = {
 # Simulacion climatica
 # ---------------------------------------------------------------------------
 
+
 def simular_serie_climatica(
     region: Region,
     dias: int = 30,
@@ -241,6 +243,7 @@ def simular_serie_climatica(
 # Deteccion de riesgo
 # ---------------------------------------------------------------------------
 
+
 def detectar_riesgo_termico(df: pd.DataFrame, cultivo: str) -> pd.DataFrame:
     """
     Anota cada registro con nivel de riesgo y severidad segun el cultivo.
@@ -285,6 +288,7 @@ def detectar_riesgo_termico(df: pd.DataFrame, cultivo: str) -> pd.DataFrame:
 # ---------------------------------------------------------------------------
 # Persistencia y reportes
 # ---------------------------------------------------------------------------
+
 
 def guardar_dataset(
     df: pd.DataFrame, region_id: str, carpeta: str = "data/synthetic"
@@ -341,6 +345,7 @@ def generar_reporte(df: pd.DataFrame, region: Region, cultivo: str) -> str:
 # ---------------------------------------------------------------------------
 # Orquestacion
 # ---------------------------------------------------------------------------
+
 
 def ejecutar_monitoreo(
     region_id: str, cultivo: str, dias: int, semilla: int | None
