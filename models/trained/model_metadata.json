@@ -1,0 +1,18 @@
+{
+  "ventana": 3,
+  "horizonte": 4,
+  "features": [
+    "temp_lag_1",
+    "hum_lag_1",
+    "mes_lag_1",
+    "temp_lag_2",
+    "hum_lag_2",
+    "mes_lag_2",
+    "temp_lag_3",
+    "hum_lag_3",
+    "mes_lag_3"
+  ],
+  "total_features": 9,
+  "modelo": "RandomForestClassifier",
+  "umbral_referencia": 10.0
+}

@@ -2,8 +2,8 @@
 AgroClima IA
 ============
 
-Sistema de alerta temprana climática para agricultura de pequeña escala en
-Latinoamérica y África.
+Sistema de alerta temprana climatica para agricultura de pequena escala en
+Latinoamerica y Africa.
 
 Este modulo genera series climaticas sinteticas para un conjunto de regiones
 de referencia y evalua el riesgo termico para cultivos sensibles en etapa de
@@ -17,7 +17,7 @@ import argparse
 import logging
 import random
 from dataclasses import dataclass
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timedelta
 from pathlib import Path
 
 import numpy as np
@@ -34,7 +34,6 @@ logger = logging.getLogger("agroclima")
 # ---------------------------------------------------------------------------
 # Modelos de datos
 # ---------------------------------------------------------------------------
-
 
 @dataclass(frozen=True)
 class Region:
@@ -144,6 +143,78 @@ REGIONES: dict[str, Region] = {
         amplitud_diaria_c=7.5,
         humedad_base_pct=58.0,
     ),
+    "bogota_co": Region(
+        id="bogota_co",
+        nombre="Bogota",
+        pais="Colombia",
+        continente="America del Sur",
+        latitud=4.7,
+        longitud=-74.1,
+        altitud_m=2640,
+        temp_media_c=14.5,
+        amplitud_diaria_c=6.0,
+        humedad_base_pct=75.0,
+    ),
+    "quito_ec": Region(
+        id="quito_ec",
+        nombre="Quito",
+        pais="Ecuador",
+        continente="America del Sur",
+        latitud=-0.2,
+        longitud=-78.5,
+        altitud_m=2850,
+        temp_media_c=14.0,
+        amplitud_diaria_c=9.0,
+        humedad_base_pct=65.0,
+    ),
+    "guatemala_gt": Region(
+        id="guatemala_gt",
+        nombre="Ciudad de Guatemala",
+        pais="Guatemala",
+        continente="America Central",
+        latitud=14.6,
+        longitud=-90.5,
+        altitud_m=1500,
+        temp_media_c=20.0,
+        amplitud_diaria_c=10.0,
+        humedad_base_pct=65.0,
+    ),
+    "addis_ababa_et": Region(
+        id="addis_ababa_et",
+        nombre="Addis Abeba",
+        pais="Etiopia",
+        continente="Africa Oriental",
+        latitud=9.0,
+        longitud=38.7,
+        altitud_m=2355,
+        temp_media_c=16.0,
+        amplitud_diaria_c=9.0,
+        humedad_base_pct=55.0,
+    ),
+    "dakar_sn": Region(
+        id="dakar_sn",
+        nombre="Dakar",
+        pais="Senegal",
+        continente="Africa Occidental / Sahel",
+        latitud=14.7,
+        longitud=-17.4,
+        altitud_m=22,
+        temp_media_c=25.0,
+        amplitud_diaria_c=6.0,
+        humedad_base_pct=65.0,
+    ),
+    "dar_es_salaam_tz": Region(
+        id="dar_es_salaam_tz",
+        nombre="Dar es Salaam",
+        pais="Tanzania",
+        continente="Africa Oriental",
+        latitud=-6.8,
+        longitud=39.3,
+        altitud_m=15,
+        temp_media_c=26.0,
+        amplitud_diaria_c=5.0,
+        humedad_base_pct=75.0,
+    ),
 }
 
 UMBRALES_CULTIVO: dict[str, UmbralCultivo] = {
@@ -154,13 +225,14 @@ UMBRALES_CULTIVO: dict[str, UmbralCultivo] = {
     "sorgo": UmbralCultivo(temp_min_c=18.0, temp_max_c=35.0),
     "mijo": UmbralCultivo(temp_min_c=16.0, temp_max_c=34.0),
     "maiz": UmbralCultivo(temp_min_c=12.0, temp_max_c=32.0),
+    "cafe": UmbralCultivo(temp_min_c=10.0, temp_max_c=30.0),
+    "papa": UmbralCultivo(temp_min_c=5.0, temp_max_c=24.0),
 }
 
 
 # ---------------------------------------------------------------------------
 # Simulacion climatica
 # ---------------------------------------------------------------------------
-
 
 def simular_serie_climatica(
     region: Region,
@@ -191,7 +263,7 @@ def simular_serie_climatica(
         np.random.seed(semilla)
 
     intervalo_horas = 24 / mediciones_por_dia
-    fecha_inicio = datetime.now(tz=timezone.utc) - timedelta(days=dias)
+    fecha_inicio = datetime.now() - timedelta(days=dias)
     fechas = pd.date_range(
         start=fecha_inicio,
         periods=dias * mediciones_por_dia,
@@ -243,7 +315,6 @@ def simular_serie_climatica(
 # Deteccion de riesgo
 # ---------------------------------------------------------------------------
 
-
 def detectar_riesgo_termico(df: pd.DataFrame, cultivo: str) -> pd.DataFrame:
     """
     Anota cada registro con nivel de riesgo y severidad segun el cultivo.
@@ -288,7 +359,6 @@ def detectar_riesgo_termico(df: pd.DataFrame, cultivo: str) -> pd.DataFrame:
 # ---------------------------------------------------------------------------
 # Persistencia y reportes
 # ---------------------------------------------------------------------------
-
 
 def guardar_dataset(
     df: pd.DataFrame, region_id: str, carpeta: str = "data/synthetic"
@@ -345,7 +415,6 @@ def generar_reporte(df: pd.DataFrame, region: Region, cultivo: str) -> str:
 # ---------------------------------------------------------------------------
 # Orquestacion
 # ---------------------------------------------------------------------------
-
 
 def ejecutar_monitoreo(
     region_id: str, cultivo: str, dias: int, semilla: int | None

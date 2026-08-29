@@ -1,0 +1,32 @@
+#VRML_SIM R2025a utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/floors/protos/RectangleArena.proto"
+
+WorldInfo {
+}
+Viewpoint {
+  orientation -0.11091283920285569 0.05427181308042318 0.9923471733243991 2.2375361468386816
+  position 0.8129265375109654 -1.281817084988434 0.8017274900274136
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+}
+Robot {
+  children [
+    LED {
+      name "led_alerta"
+    }
+  ]
+  name "estacion_climatica"
+  controller "estacion_climatica"
+}
+Shape {
+  geometry Box {
+    size 0.1 0.1 0.1
+  }
+}

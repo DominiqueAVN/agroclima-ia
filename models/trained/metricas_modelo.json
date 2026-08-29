@@ -1,0 +1,119 @@
+{
+  "fecha_entrenamiento": "2026-08-28T22:03:08.957791",
+  "horizonte_pasos": 4,
+  "casos_entrenamiento": 27965,
+  "casos_prueba": 6991,
+  "matriz_confusion": {
+    "normal_predicho_normal": 5896,
+    "normal_predicho_alerta": 370,
+    "alerta_predicho_normal": 33,
+    "alerta_predicho_alerta": 692
+  },
+  "global": {
+    "accuracy": 0.9424,
+    "precision_alerta": 0.6516,
+    "recall_alerta": 0.9545,
+    "f1_alerta": 0.7745
+  },
+  "baseline_persistencia": {
+    "accuracy": 0.8817,
+    "recall_alerta": 0.429,
+    "f1_alerta": 0.4293
+  },
+  "por_region": {
+    "addis_ababa_et": {
+      "casos_evaluados": 583,
+      "casos_alerta_reales": 2,
+      "recall_alerta": 0.0,
+      "precision_alerta": 0.0,
+      "f1_alerta": 0.0
+    },
+    "antananarivo_mg": {
+      "casos_evaluados": 583,
+      "casos_alerta_reales": 0,
+      "recall_alerta": 0.0,
+      "precision_alerta": 0.0,
+      "f1_alerta": 0.0
+    },
+    "arequipa_pe": {
+      "casos_evaluados": 582,
+      "casos_alerta_reales": 2,
+      "recall_alerta": 0.0,
+      "precision_alerta": 0.0,
+      "f1_alerta": 0.0
+    },
+    "bogota_co": {
+      "casos_evaluados": 583,
+      "casos_alerta_reales": 2,
+      "recall_alerta": 0.0,
+      "precision_alerta": 0.0,
+      "f1_alerta": 0.0
+    },
+    "cochabamba_bo": {
+      "casos_evaluados": 582,
+      "casos_alerta_reales": 0,
+      "recall_alerta": 0.0,
+      "precision_alerta": 0.0,
+      "f1_alerta": 0.0
+    },
+    "dakar_sn": {
+      "casos_evaluados": 583,
+      "casos_alerta_reales": 83,
+      "recall_alerta": 0.855,
+      "precision_alerta": 0.392,
+      "f1_alerta": 0.538
+    },
+    "dar_es_salaam_tz": {
+      "casos_evaluados": 583,
+      "casos_alerta_reales": 154,
+      "recall_alerta": 0.981,
+      "precision_alerta": 0.404,
+      "f1_alerta": 0.572
+    },
+    "guatemala_gt": {
+      "casos_evaluados": 583,
+      "casos_alerta_reales": 1,
+      "recall_alerta": 0.0,
+      "precision_alerta": 0.0,
+      "f1_alerta": 0.0
+    },
+    "nairobi_ke": {
+      "casos_evaluados": 582,
+      "casos_alerta_reales": 0,
+      "recall_alerta": 0.0,
+      "precision_alerta": 0.0,
+      "f1_alerta": 0.0
+    },
+    "oaxaca_mx": {
+      "casos_evaluados": 582,
+      "casos_alerta_reales": 0,
+      "recall_alerta": 0.0,
+      "precision_alerta": 0.0,
+      "f1_alerta": 0.0
+    },
+    "ouagadougou_bf": {
+      "casos_evaluados": 582,
+      "casos_alerta_reales": 429,
+      "recall_alerta": 0.998,
+      "precision_alerta": 0.979,
+      "f1_alerta": 0.988
+    },
+    "quito_ec": {
+      "casos_evaluados": 583,
+      "casos_alerta_reales": 52,
+      "recall_alerta": 0.808,
+      "precision_alerta": 0.6,
+      "f1_alerta": 0.689
+    }
+  },
+  "variables_mas_influyentes": {
+    "temp_lag3": 0.2471,
+    "region_ouagadougou_bf": 0.15,
+    "temp_lag1": 0.1229,
+    "temp_lag2": 0.099,
+    "humedad_lag3": 0.0665,
+    "hora_sin": 0.0653,
+    "hora_cos": 0.0554,
+    "humedad_lag1": 0.04
+  }
+}
